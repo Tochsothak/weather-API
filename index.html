@@ -16,12 +16,17 @@
 
         <!-- Button to get weather  -->
         <button id="getWeatherBtn">Get Weather</button>
+        <button id="unitToggle">Switch to °F</button>
+        <button id="darkModeToggle">DarkMode</button>
+
+        <div id="image"></div>
 
         <!-- Loading Spinner -->
         <div id="loading">Loading...</div>
         <!-- Weather display -->
         <div class="weather-info" id="weather-info">
             <h2 id="cityName"></h2>
+            <img src="{iconUrl}" id="weatherIcon" alt="Weather Icon" />
             <p id="temperature"></p>
             <p id="description"></p>
         </div>

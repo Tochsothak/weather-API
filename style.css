@@ -11,7 +11,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  /* background-image: url("/images/rainy.jpg"); */
 }
+
 .container {
   background-color: #fff;
   padding: 30px;
@@ -57,4 +59,26 @@ button:hover {
   font-size: 20px;
   color: #007bff;
   display: none;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+body.dark-mode .container {
+  background-color: #444;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+  input,
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
 }

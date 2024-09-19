@@ -28,10 +28,16 @@ getWeatherBtn.addEventListener("click", () => {
 
 //Function get weather data from API
 function getWeatherData(city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const units = isCelsius ? "metric" : "imperial";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
     fetch(apiUrl)
-        .then((response) => response.json())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("City not found");
+            }
+            return response.json();
+        })
         .then((data) => {
             hideLoading();
             displayWeatherData(data);
@@ -45,12 +51,13 @@ function getWeatherData(city) {
     function displayWeatherData(data) {
         const { name } = data;
         const { temp } = data.main;
-        const { description } = data.weather[0];
-        const { icon } = data.weather[0];
+        const { description, icon } = data.weather[0];
 
         cityNameElem.textContent = `Weather in ${name}`;
         temperatureElem.textContent = `Temperature: ${temp}°C`;
         descriptionElem.textContent = `Conditions: ${description}`;
+        const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
+        document.getElementById("weatherIcon").src = iconUrl;
     }
 }
 
@@ -61,4 +68,71 @@ function showLoading() {
 
 function hideLoading() {
     document.getElementById("loading").style.display = "none";
+}
+
+// Switch to °F function
+let isCelsius = true;
+
+document.getElementById("unitToggle").addEventListener("click", () => {
+    isCelsius = !isCelsius;
+    const city = cityInput.value.trim();
+    if (city) {
+        getWeatherData(city);
+    }
+    document.getElementById("unitToggle").textContent = isCelsius ?
+        "Switch to °F" :
+        "Switch to °C";
+});
+
+// Geolocation
+navigator.geolocation.getCurrentPosition((position) => {
+    const { latitude, longtitude } = position.coords;
+    getWeatherByLocation(latitude, longtitude);
+});
+
+function getWeatherByLocation(lat, lon) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+    fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            getWeatherData(data);
+        })
+        .catch((error) => {
+            alert("Error fetching weather data");
+        });
+}
+
+// Dark Mode
+const toggleDarkModeBtn = document.getElementById("darkModeToggle");
+toggleDarkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+});
+
+//Five day forcast
+function getFiveDayForecast(city) {
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+    fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            displayForrcastData(data);
+        })
+        .catch((error) => {
+            alert("Error fetching data.");
+        });
+}
+
+function displayForrcastData(data) {}
+
+//  Weather background
+function setWeatherackground(description) {
+    const images = document.getElementById("image");
+    if (description.includes("rain")) {
+        document.body.style.backgroundImage = url("images/rainy.jpg");
+    } else if (description.includes("clear")) {
+        document.body.style.backgroundImage = url("/images/sunny.jpg");
+    } else if (description.includes("cloud")) {
+        document.body.style.backgroundImage = url("/cloudy.jpg");
+    }
 }
