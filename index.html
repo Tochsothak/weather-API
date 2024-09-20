@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <h1>Wearther App</h1>
-        <!-- Input for city -->
-        <input type="text" id="cityInput" placeholder="Enter city name" />
+      <h1>Wearther App</h1>
+      <!-- Input for city -->
+      <input type="text" id="cityInput" placeholder="Enter city name" />
 
-        <!-- Button to get weather  -->
-        <button id="getWeatherBtn">Get Weather</button>
-        <button id="unitToggle">Switch to °F</button>
-        <button id="darkModeToggle">DarkMode</button>
+      <!-- Button to get weather  -->
+      <button id="getWeatherBtn">Get Weather</button>
+      <button id="unitToggle">Switch to °F</button>
+      <button id="darkModeToggle">DarkMode</button>
 
-        <div id="image"></div>
-
-        <!-- Loading Spinner -->
-        <div id="loading">Loading...</div>
-        <!-- Weather display -->
-        <div class="weather-info" id="weather-info">
-            <h2 id="cityName"></h2>
-            <img src="{iconUrl}" id="weatherIcon" alt="Weather Icon" />
-            <p id="temperature"></p>
-            <p id="description"></p>
-        </div>
+      <!-- Loading Spinner -->
+      <div id="loading">Loading...</div>
+      <!--Current Weather display -->
+      <div class="weather-info" id="weather-info">
+        <h2 id="cityName"></h2>
+        <img src="{iconUrl}" id="weatherIcon" alt="Weather Icon" />
+        <p id="temperature"></p>
+        <p id="description"></p>
+      </div>
+      <!--5 Days forecast section -->
+      <div id="forecast">
+        <h2>5-Day Forecast</h2>
+        <div id="forecastContainer"></div>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>

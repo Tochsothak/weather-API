@@ -71,6 +71,37 @@ body.dark-mode .container {
   color: white;
 }
 
+/* 5 days forecast */
+#forecast {
+  margin-top: 30px;
+}
+#forecast h2 {
+  font-size: 1.5 rem;
+  margin-bottom: 10px;
+}
+
+#forecastContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.forecast-item {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  width: 18%;
+}
+.forecast-item img {
+  width: 50px;
+}
+.forecast-item h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+.forecast-item p {
+  margin: 5px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
