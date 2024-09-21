@@ -23,15 +23,20 @@ body {
   webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   text-align: center;
-  width: 70%;
+  width: 90%;
 }
 .container .row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
+  width: 100%;
 }
 .container h1 {
   margin-bottom: 10px;
+}
+.currentWeather {
+  width: 40%;
+  padding: 20px;
 }
 .search-section {
   position: relative;
@@ -45,25 +50,31 @@ body {
   border-radius: 16px;
   width: 100%;
 }
-/* button {
-  padding: 10px 30px;
+button#unitToggle,
+#darkModeToggle {
+  padding: 6px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-} */
+}
+#unitToggle {
+}
 #getWeatherBtn {
   position: absolute;
-  right: 15px;
-  top: 8px;
+  right: 10px;
+  top: 6.3px;
+  background: transparent;
   border: none;
+  cursor: pointer;
 }
 #getWeatherBtn i {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: black;
+  background: transparent;
 }
 button:hover {
   background-color: #0056b3;
@@ -88,18 +99,19 @@ button:hover {
 
 /* Dark mode */
 body.dark-mode {
-  background-color: #333;
+  background-color: rgba(255, 255, 255, 0.2);
+
   color: #fff;
 }
 body.dark-mode .container {
-  background-color: #444;
   color: white;
+  backdrop-filter: blur(5px);
+  webkit-backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* 5 days forecast */
-#forecast {
-  margin-top: 30px;
-}
+
 #forecast h2 {
   font-size: 1.5 rem;
   margin-bottom: 10px;
@@ -108,13 +120,14 @@ body.dark-mode .container {
 #forecastContainer {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 .forecast-item {
-  background-color: #f1f1f1;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
-  width: 18%;
+  width: 20%;
   overflow: hidden;
 }
 .forecast-item:hover {
@@ -136,11 +149,33 @@ body.dark-mode .container {
 /* Responsive */
 @media (max-width: 768px) {
   .container {
-    width: 90%;
+    width: 95%;
   }
-  input,
-  button {
+
+  .container .row {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .currentWeather {
     width: 100%;
-    margin-top: 10px;
+  }
+  #forecast {
+    width: 100%;
+  }
+  .forecast-item {
+    width: 100%;
+    height: 180px;
+  }
+  .forecast-item img {
+    width: 30px;
+  }
+  .forecast-item h3 {
+    font-size: 0.6rem;
+    margin-bottom: 2px;
+  }
+  .forecast-item p {
+    margin: 2px;
+    font-size: 0.8rem;
   }
 }

@@ -57,7 +57,7 @@ function getWeatherData(city) {
         const { temp } = data.main;
         const { description, icon } = data.weather[0];
 
-        cityNameElem.textContent = `Weather in ${name}`;
+        cityNameElem.textContent = `${name} Today`;
         temperatureElem.textContent = `Temperature: ${temp}°C`;
         descriptionElem.textContent = `Conditions: ${description}`;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
@@ -154,9 +154,7 @@ document.getElementById("unitToggle").addEventListener("click", () => {
     if (city) {
         getWeatherData(city);
     }
-    document.getElementById("unitToggle").textContent = isCelsius ?
-        "Switch to °F" :
-        "Switch to °C";
+    document.getElementById("unitToggle").textContent = isCelsius ? "°F" : "°C";
 });
 
 // Geolocation
