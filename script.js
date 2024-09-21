@@ -51,14 +51,14 @@ function getWeatherData(city) {
             alert("Error fetching weather data.");
         });
 
-    // Function Displa Weather data
+    // Function Display Weather data
     function displayWeatherData(data) {
         const { name } = data;
         const { temp } = data.main;
         const { description, icon } = data.weather[0];
 
         cityNameElem.textContent = `${name} Today`;
-        temperatureElem.textContent = `Temperature: ${temp}°C`;
+        temperatureElem.textContent = `Temperature: ${temp} `;
         descriptionElem.textContent = `Conditions: ${description}`;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
         document.getElementById("weatherIcon").src = iconUrl;
