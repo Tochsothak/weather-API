@@ -20,11 +20,13 @@ const descriptionElem = document.getElementById("description");
 // Add event listener to button
 getWeatherBtn.addEventListener("click", () => {
     showLoading();
+
     const city = cityInput.value.trim();
     if (city.length === 0) {
         alert("City name cannot be empty.");
         return;
     }
+
     getWeatherData(city);
     //  5-days forecast
     getFiveDayForecast(city);
@@ -58,7 +60,9 @@ function getWeatherData(city) {
         const { description, icon } = data.weather[0];
 
         cityNameElem.textContent = `${name} Today`;
-        temperatureElem.textContent = `Temperature: ${temp} `;
+        temperatureElem.textContent = `Temperature: ${temp} ${
+      isCelsius ? "°C" : "°F"
+    } `;
         descriptionElem.textContent = `Conditions: ${description}`;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
         document.getElementById("weatherIcon").src = iconUrl;
@@ -169,7 +173,7 @@ function getWeatherByLocation(lat, lon) {
     fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-            getWeatherData(data);
+            displayWeatherData(data);
         })
         .catch((error) => {
             alert("Error fetching weather data");
